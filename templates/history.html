@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script>
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>History</h1>
+
+<h2>Liked Books</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in liked_books %}
+    <tr>
+      <td>Title: {{ book.book_title }}</td>
+      <td>Author: {{ book.book_author }}</td>
+      <td><a href="{{ url_for('change_reaction', book_id=book.id) }}">Dislike</a></td>
+      <td><button type="button" onclick="deleteReaction({{ book.id }})">Remove</button></td>
+    </tr>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Disliked Books</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in disliked_books %}
+    <tr>
+      <td>Title: {{ book.book_title }}</td>
+      <td>Author: {{ book.book_author }}</td>
+      <td><a href="{{ url_for('change_reaction', book_id=book.id) }}">Like</a></td>
+      <td><button type="button" onclick="deleteReaction({{ book.id }})">Delete</button></td>
+    </tr>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

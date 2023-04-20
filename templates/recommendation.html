@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation</title>
+    <style>
+        #book-details {
+            display: none;
+        }
+    
+        .hidden {
+            display: none;
+        }
+    
+        .visible {
+            display: block;
+        }
+    </style>
+    
+    <script>
+        const catstaff = [
+        'cat1.gif',
+        'cat2.gif',
+        'cat3.gif',
+        'cat4.gif',
+        'cat5.gif',
+        'cat6.gif',
+        'cat7.gif',
+        'cat8.gif',
+    ];
+    function setRandomGif() {
+        const randomIndex = Math.floor(Math.random() * catstaff.length);
+        const randomGif = catstaff[randomIndex];
+        const gifElement = document.getElementById("loading-gif-img");
+        gifElement.src = `static/images/${randomGif}`;
+    }
+    
+        async function submitReaction(like) {
+            const chatHistory = document.getElementById("history").value;
+            const lines = chatHistory.split("\n");
+            const reversedLines = lines.reverse();
+            const titleLine = reversedLines.find(line => line.startsWith("Title:"));
+            const authorLine = reversedLines.find(line => line.startsWith("Author:"));
+            const bookTitle = titleLine.substring(7).trim();
+            const bookAuthor = authorLine.substring(8).trim();
+        
+            const formData = new FormData();
+            formData.append("book_title", bookTitle);
+            formData.append("book_author", bookAuthor);
+            formData.append("like", like);
+        
+            const response = await fetch("/reaction", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+        
+            if (response.ok) {
+                alert(like ? "Liked!" : "Disliked!");
+            } else {
+                alert("Error submitting reaction");
+            }
+        }
+
+        function showLoading() {
+            const loadingGif = document.getElementById("loading-gif");
+            loadingGif.classList.remove("hidden");
+            loadingGif.classList.add("visible");
+        }
+        
+        window.onload = function() {
+            function desired_output() {
+                const chat_history = document.getElementById("history").value;
+                const lines = chat_history.split("\n");
+                const reversedLines = lines.reverse();
+                const titleLine = reversedLines.find(line => line.startsWith("Title:"));
+                const authorLine = reversedLines.find(line => line.startsWith("Author:"));
+                const descriptionLine = reversedLines.find(line => line.startsWith("Description:"));
+            
+                console.log('titleLine:', titleLine);
+                console.log('authorLine:', authorLine);
+                console.log('descriptionLine:', descriptionLine);
+            
+                if (titleLine && authorLine && descriptionLine) {
+                    const bookTitle = titleLine.substring(7).trim();
+                    const bookAuthor = authorLine.substring(8).trim();
+                    const bookDescription = descriptionLine.substring(13).trim();
+            
+                    // Update the contents of the HTML elements
+                    document.getElementById("book-title").textContent = bookTitle;
+                    document.getElementById("book-author").textContent = bookAuthor;
+                    document.getElementById("book-description").textContent = bookDescription;
+            
+                    // Show the book details div
+                    document.getElementById("book-details").style.display = "block";
+                }
+            }
+           
+            // Assign the desired_output function to the onclick event of the "Show Recommendation" button
+            document.getElementById("show-recommendation").onclick = desired_output;
+            const loadingGif = document.getElementById("loading-gif");
+            loadingGif.classList.remove("visible");
+            loadingGif.classList.add("hidden");
+            setRandomGif();
+        }
+
+    </script>
+</head>
+<body>
+    <input type="hidden" id="history" name="history" value="{{ chat_history }}"><br><br>
+<!--{{ chat_history_html_formatted|safe }} -->
+    {% if 'Title:' in chat_history_html_formatted %}
+    <button type="button" onclick="submitReaction(true)">Like</button>
+    <button type="button" onclick="submitReaction(false)">Dislike</button>
+    {% endif %}
+    <br>
+    <form method="POST" action="/recommendation" onsubmit="showLoading();">
+        <button type="submit" name="button_text" value="submit">Submit</button>
+        <button type="button" id="show-recommendation">Show Recommendation</button>
+        <button type="submit" name="button_text" value="clear">Clear Chat history</button>
+    </form>
+    
+
+    <div id="loading-gif" class="hidden">
+        <img id="loading-gif-img" src="" alt="Loading..." width="500" height="500">
+    </div>
+
+    <div id="book-details">
+        <h2 id="book-title"></h2>
+        <h3 id="book-author"></h3>
+        <p id="book-description"></p>
+    </div>
+</body>
+</html>
+{% endblock %}

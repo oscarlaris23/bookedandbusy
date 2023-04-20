@@ -1,0 +1,8 @@
+web: gunicorn app:app
+Flask
+Flask-Login
+Flask-SQLAlchemy
+openai
+python-dotenv
+SQLAlchemy
+gunicorn
