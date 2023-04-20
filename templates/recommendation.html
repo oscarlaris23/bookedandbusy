@@ -115,13 +115,14 @@
 
     </script>
 </head>
+    <h1 style="text-align: center;">Recommendation</h1>
     <body class="login-register">
     <input type="hidden" id="history" name="history" value="{{ chat_history }}"><br><br>
-<!--{{ chat_history_html_formatted|safe }} -->
+<!--{ chat_history_html_formatted|safe }} -->
     <form method="POST" action="/recommendation" onsubmit="showLoading();">
-        <button type="submit" name="button_text" value="submit" class="button3">Submit</button>
-        <button type="button" id="show-recommendation" class="button3">Show Recommendation</button>
-        <button type="submit" name="button_text" value="clear" class="button3">Clear Chat history</button>
+        <button type="submit" name="button_text" value="submit" class="button3">Generate Recommendation</button>
+        <button type="button" id="show-recommendation" class="button3">Reveal Recommendation</button>
+       <!-- <button type="submit" name="button_text" value="clear" class="button3">Clear Chat history</button> -->
     </form>
 
     <div id="loading-gif" class="hidden">

@@ -62,7 +62,7 @@ class Genre(db.Model):
     def __init__(self, name):
         self.name = name
 def add_genres():
-    genres = ["Mystery", "Sci-Fi", "Fantasy", "Romance", "Thriller", "Biography", "Non-fiction", "Fiction", "Drama", "Historical Fiction", "Poetry", "Women's Fiction", "Contemporary"]
+    genres = ["Action & Adventure", "Art & Photography", "Biography", "Business & Economics", "Comedy", "Computers & Internet", "Contemporary", "Cookbooks", "Crafts, Hobbies & Home", "Drama", "Dystopian", "Education & Teaching", "Environment & Nature", "Fantasy", "Fiction", "Graphic Novel", "Health & Wellness", "Historical Fiction", "History & Politics", "Horror", "Horror Fiction", "Humor & Satire", "Magical Realism", "Memoir", "Music & Entertainment", "Mystery", "Non-fiction", "Parenting & Families", "Paranormal Romance", "Philosophy", "Poetry", "Romance", "Satire", "Science & Technology", "Sci-Fi", "Self-Help", "Self-Help Books", "Spirituality", "Sports & Outdoors", "Thriller", "Travel & Adventure", "True Crime", "Women's Fiction", "Young Adult Fiction"]
 
     for genre_name in genres:
         genre = Genre.query.filter_by(name=genre_name).first()
@@ -77,7 +77,7 @@ def add_genres():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-        add_genres()  # Move this line to here
+        add_genres() 
     app.run()
 
     
@@ -109,7 +109,7 @@ def home():
 @login_required
 def preferences_and_genres():
     genres = Genre.query.all()
-    preferences = ["New Releases", "Classics", "Underrated Gems", "Bestsellers"]
+    preferences = ["Bestsellers", "Book-to-Movie Adaptations", "Children's Books", "Classics", "Graphic Novels", "New Releases", "Series", "Short Stories", "Underrated Gems", "Young Adult"]
 
     user_id = current_user.id
 
@@ -303,5 +303,5 @@ def generate_amazon_link(book_title, book_author):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-        add_genres()  # Move this line to here
+        add_genres() 
     app.run()

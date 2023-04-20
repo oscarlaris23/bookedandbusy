@@ -1,0 +1,19 @@
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+  
+  th,
+  td {
+    padding: 15px;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  
+  th {
+    text-align: left;
+    background-color: #55608f;
+  }
+  

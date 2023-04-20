@@ -54,7 +54,36 @@ body{
   background-image: url(https://cdn.magix-iap.com/resize/600x600/FpfZW26lTGyvIVheMoWuEw);
   background-size: cover;
 }
+.login-background-image {
+  background-image: url(https://media.npr.org/assets/img/2022/03/18/copy-of-lk_books_harlan-158_wide-0f0aeda65737f176434f8980e200eccd3885d689-s1600-c85.webp);
+  background-size: cover;
+}
+.rec-background-image {
+  background-image: url();
+  background-size: cover;
+}
+.shopping-background-image {
+  position: relative;
+  background-size: cover;
+}
 
+.shopping-background-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+  background-size: cover;
+  opacity: 0.5; /* adjust opacity value as needed */
+  z-index: -1;
+}
+
+.rec-background-image {
+  background-image: url(https://live.staticflickr.com/5062/5613967601_62d4b0573a_b.jpg);
+  background-size: cover;
+}
 /*styling for text - login.html, register, preferences-and-genre.html*/ 
 .login-register {
   line-height: 30px;
@@ -189,4 +218,20 @@ tbody tr:nth-child(odd) {
 
 tbody tr:hover {
   background-color: #ddd;
+}
+.pref-genre-list {
+  line-height: 30px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.left {
+  order: 1;
+}
+
+.right {
+  order: 2;
 }

@@ -1,29 +1,33 @@
 {% extends 'base.html' %}
 
+{% block body_class %}shopping-body{% endblock %}
+
+{% block head %}
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='images/style.css') }}">
+</head>
+{% endblock %}
 {% block content %}
-<h1>History</h1>
-
-<h1 style="text-align: center;">Buy Your Likes</h1>
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Buy that book</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for book in liked_books %}
-    <tr>
-      <td>Title: {{ book.book_title }}</td>
-      <td>Author: {{ book.book_author }}</td>
-      <td><a href="{{ generate_amazon_link(book.book_title, book.book_author) }}" target="_blank">Buy on Amazon</a></td>
-      <td><button type="button" onclick="deleteReaction({{ book.id }})">Remove</button></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+  <h1 style="text-align: center;">Shopping</h1>
+  <h2 style="text-align: center;">Buy Your Likes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Buy that book</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in liked_books %}
+      <tr>
+        <td>Title: {{ book.book_title }}</td>
+        <td>Author: {{ book.book_author }}</td>
+        <td><a href="{{ generate_amazon_link(book.book_title, book.book_author) }}" target="_blank">Buy on Amazon</a></td>
+        <td><button type="button" onclick="deleteReaction({{ book.id }})">Remove</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

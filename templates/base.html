@@ -11,10 +11,11 @@
   <nav class="nav">
     <ul>
       <li><a href="{{ url_for('home') }}">Home</a></li>
-      <li><a href="{{ url_for('history') }}">History</a></li>
-      <li><a href="{{ url_for('recommendation') }}">Recommendations</a></li>
-      <li><a href="{{ url_for('cart') }}">Shopping</a></li>
       <li><a href="{{ url_for('preferences_and_genres') }}">Preferences and Genres</a></li>
+      <li><a href="{{ url_for('recommendation') }}">Recommendations</a></li>
+      <li><a href="{{ url_for('history') }}">History</a></li>
+      <li><a href="{{ url_for('cart') }}">Shopping</a></li>
+
       {% if not current_user.is_authenticated %}
         <li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="{{ url_for('login') }}">Login</a></li>
