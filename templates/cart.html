@@ -3,13 +3,15 @@
 {% block content %}
 <h1>History</h1>
 
-<h2>Liked Books</h2>
+<h1 style="text-align: center;">Buy Your Likes</h1>
+
+
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Author</th>
-      <th>Amazon Link</th>
+      <th>Buy that book</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -18,7 +20,7 @@
     <tr>
       <td>Title: {{ book.book_title }}</td>
       <td>Author: {{ book.book_author }}</td>
-      <td><a href="{{ generate_amazon_link(book.book_title, book.book_author) }}" target="_blank">Amazon Link</a></td>
+      <td><a href="{{ generate_amazon_link(book.book_title, book.book_author) }}" target="_blank">Buy on Amazon</a></td>
       <td><button type="button" onclick="deleteReaction({{ book.id }})">Remove</button></td>
     </tr>
     {% endfor %}

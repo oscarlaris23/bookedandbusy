@@ -1,19 +1,30 @@
-{% extends 'base.html' %}
+<!-- login.html -->
 
-{% block content %}
-<h1>Login</h1>
-{% if error %}
-<p class="alert alert-danger">{{ error }}</p>
-{% endif %}
-<form method="post">
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+<head>
+    <link rel="stylesheet" type="text/css" href="static/images/style.css">
+  </head>
+  
+  {% extends 'base.html' %}
+  
+  {% block content %}
+  <div class="div">
+    <h1 style="color: black;">Login</h1>
+  </div>
+  {% if error %}
+  <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+  <form method="post">
+    <div class="form-group div">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
     </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+    <div class="form-group div">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
-{% endblock %}
+    <div class="div">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+  {% endblock %}
+  

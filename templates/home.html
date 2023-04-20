@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome to the Book Recommendation App</h1>
-<p>Get personalized book recommendations based on your preferences and genres.</p>
-<a href="{{ url_for('preferences_and_genres') }}">Get started</a>
+<head>
+  <link rel="stylesheet" type="text/css" href="static/images/style.css">
+</head>
+<body class="with-background-image">
+  <div class="div">
+    <h1>Welcome to the Book'd & Busy!</h1>
+    <p>Get personalized book recommendations based on your preferences and genres.</p>
+    <a href="{{ url_for('preferences_and_genres') }}" class="button">Get started</a>
+  </div>
 {% endblock %}
+</body>

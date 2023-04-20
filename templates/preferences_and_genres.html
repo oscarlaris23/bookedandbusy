@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
 
 {% block content %}
@@ -7,20 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preferences and Genres</title>
+    <link rel="stylesheet" type="text/css" href="static/images/style.css">
 </head>
-<body>
+<body class="login-register">
     <form method="POST" action="/preferences_and_genres">
-        <label>Select your favorite genres:</label><br>
-        {% for genre in genres %}
-        <input type="checkbox" id="genre_{{ genre.id }}" name="genre_{{ genre.id }}" {% if genre.name in selected_genres %}checked{% endif %}><label for="genre_{{ genre.id }}">{{ genre.name }}</label><br>
-        {% endfor %}
+        <div class="pref-genre-list">
+            <div class="left">
+                <label>Select your favorite genres:</label><br>
+                {% for genre in genres %}
+                <input type="checkbox" id="genre_{{ genre.id }}" name="genre_{{ genre.id }}" {% if genre.name in selected_genres %}checked{% endif %}><label for="genre_{{ genre.id }}">{{ genre.name }}</label><br>
+                {% endfor %}
+            </div>
+            <div class="right">
+                <label>Select your preferences:</label><br>
+                {% for pref in preferences %}
+                <input type="checkbox" id="pref_{{ pref }}" name="pref_{{ pref }}" {% if pref in selected_preferences %}checked{% endif %}><label for="pref_{{ pref }}">{{ pref }}</label><br>
+                {% endfor %}
+            </div>
+        </div>
         <br>
-        <label>Select your preferences:</label><br>
-        {% for pref in preferences %}
-        <input type="checkbox" id="pref_{{ pref }}" name="pref_{{ pref }}" {% if pref in selected_preferences %}checked{% endif %}><label for="pref_{{ pref }}">{{ pref }}</label><br>
-        {% endfor %}
-        <br>
-        <button type="submit" name="button_text" value="submit">Save Preferences and Genres</button>
+        <button type="submit" name="button_text" value="submit" class="button3">Save Preferences and Genres</button>
     </form>
 </body>
 </html>

@@ -1,65 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Reactions</title>
-    <style>
-        /* Add some basic styling for the navigation bar */
-        .nav {
-          display: flex;
-          justify-content: space-around;
-          background-color: #222;
-          padding: 0rem;
-      }
-      
-      .nav a {
-          color: orange;
-          text-decoration: none;
-          padding: 0.5rem;
-      }
-      
-      .nav a:hover {
-          background-color: green;
-          color: orange;
-      }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Reactions</title>
+  <link rel="stylesheet" type="text/css" href="static/images/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Verdana">
 </head>
 <body>
-    <nav class="nav">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('history') }}">History</a>
-        <a href="{{ url_for('recommendation') }}">Recommendations</a>
-        <a href="{{url_for('cart') }} " >Shopping</a>
-        <a href="{{ url_for('preferences_and_genres') }}">Preferences and Genres</a>
-        {% if not current_user.is_authenticated %}
-         <a href="{{ url_for('register') }}">Register</a>
-         <a href="{{ url_for('login') }}">Login</a>
-        {% else %}
-         <a href="{{ url_for('logout') }}">Logout</a>
-        {% endif %}
-    </nav>
-    <script>
-        async function deleteReaction(bookId) {
-          console.log('Book ID to delete:', bookId);
-          const formData = new FormData();
-          formData.append('book_id', bookId);
-    
-          const response = await fetch('/delete_reaction', {
-            method: 'POST',
-            body: formData,
-          });
-    
-          console.log('Server response:', response);
-    
-          if (response.ok) {
-            location.reload();
-          } else {
-            alert('Error deleting reaction');
-          }
-        }
-      </script>
-    {% block content %}
-    {% endblock %}
+  <nav class="nav">
+    <ul>
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('history') }}">History</a></li>
+      <li><a href="{{ url_for('recommendation') }}">Recommendations</a></li>
+      <li><a href="{{ url_for('cart') }}">Shopping</a></li>
+      <li><a href="{{ url_for('preferences_and_genres') }}">Preferences and Genres</a></li>
+      {% if not current_user.is_authenticated %}
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+      {% else %}
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  <script>
+    async function deleteReaction(bookId) {
+      console.log('Book ID to delete:', bookId);
+      const formData = new FormData();
+      formData.append('book_id', bookId);
+
+      const response = await fetch('/delete_reaction', {
+        method: 'POST',
+        body: formData,
+      });
+
+      console.log('Server response:', response);
+
+      if (response.ok) {
+        location.reload();
+      } else {
+        alert('Error deleting reaction');
+      }
+    }
+  </script>
+  
+  {% block content %}
+  {% endblock %}
 </body>
 </html>

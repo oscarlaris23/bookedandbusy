@@ -1,0 +1,192 @@
+    /*navigation bar - base.html*/
+    .nav {
+      background-color: #383838;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0.5rem;
+      overflow: hidden;
+      display: flex; /* Add display flex to ul */
+      flex-grow: 1; /* Add flex-grow to ul */
+    }
+    
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      flex-grow: 1; /* Add flex-grow to li */
+    }
+    
+    .nav a {
+      font-family: 'Verdana', sans-serif;
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 14px 16px;
+      text-align: center;
+    }
+    
+    .nav a:hover {
+      background-color: #666;
+      color: white;
+    }
+    
+
+/* setting font and background color for entire website*/ 
+body{
+  background:#AEC2B6;
+  font-family: 'Verdana', sans-serif;
+}
+
+  /*styling for text - home, login, register.html*/ 
+.div {
+  line-height: 30px;
+  text-align: center;
+  color: white;
+}
+
+  /*adding background pic to home.html*/ 
+.with-background-image {
+  background-image: url(https://cdn.magix-iap.com/resize/600x600/FpfZW26lTGyvIVheMoWuEw);
+  background-size: cover;
+}
+
+/*styling for text - login.html, register, preferences-and-genre.html*/ 
+.login-register {
+  line-height: 30px;
+  text-align: center;
+}
+
+  /*Get Started button - home.html*/
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  background-color: #337ab7;
+  border: 2px solid #2e6da4;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #2e6da4;
+  border: 2px solid #337ab7;
+}
+
+  /*Remove button - history.html*/
+.button2 {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  background-color: #337ab7;
+  border: 2px solid #2e6da4;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button2:hover {
+  background-color: #2e6da4;
+  border: 2px solid #337ab7;
+}
+
+  /*Save preferences/genres button - savepreferences-and-genres & recommendation.html*/
+.button3 {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  background-color: #337ab7;
+  border: 2px solid #2e6da4;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button3:hover {
+  background-color: #2e6da4;
+  border: 2px solid #337ab7;
+}
+
+/*buttons - login.html & register.html*/ 
+.btn-btn-primary {
+  display: inline-block;
+  padding: 2.5px 5px;
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  background-color: #337ab7;
+  border: 2px solid #2e6da4;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-btn-primary:hover {
+  background-color: #2e6da4;
+  border: 2px solid #337ab7;
+}
+
+
+/* preferences/genres list, side by side */ 
+.pref-genre-list {
+  line-height: 30px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  order: 1;
+}
+
+.right {
+  order: 2;
+}
+
+/* source for table https://codepen.io/alexerlandsson/pen/mPWgpO */
+table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+thead {
+  background-color: #55608f;
+  color: white;
+}
+
+th,
+td {
+  padding: 15px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}

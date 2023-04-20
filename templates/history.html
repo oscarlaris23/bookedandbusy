@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<script>
-</script>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='static/images/style.css') }}">
+
+</head>
 {% endblock %}
 
 {% block content %}
-<h1>History</h1>
+<h1 style="text-align: center;">History</h1>
 
-<h2>Liked Books</h2>
+<h2 style="text-align: center;">Liked Books</h2>
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Author</th>
       <th>Action</th>
+      <th>Remove</th>
     </tr>
   </thead>
   <tbody>
@@ -29,8 +32,7 @@
     {% endfor %}
   </tbody>
 </table>
-
-<h2>Disliked Books</h2>
+<h2 style="text-align: center;">Disliked Books</h2>
 <table>
   <thead>
     <tr>
