@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 import secrets
-
+from openai.error import RateLimitError
 
 
 load_dotenv()
@@ -80,24 +80,32 @@ if __name__ == '__main__':
         add_genres() 
     app.run()
 
-    
+
 
 def chatcompletion(user_input, chat_history, selected_genres, selected_preferences):
-    output = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-0301",
-        temperature=1,
-        frequency_penalty=0,
-        messages=[
-            {"role": "system", "content": f"a book recommendation that keeps giving of recommendations without fail. do not say anything else besides the recommendation in the format asked, take into consideration the selected genres, prefrences and liked and disliked books. Selected genres: {', '.join(selected_genres)}; Selected preferences: {', '.join(selected_preferences)}. Conversation history: {chat_history}"},
-            {"role": "user", "content": f"{user_input}"},
-        ]
-    )
+    try:
+        output = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-0301",
+            temperature=1,
+            frequency_penalty=0,
+            messages=[
+                {"role": "system", "content": f"a book recommendation that keeps giving of recommendations without fail. do not say anything else besides the recommendation in the format asked, take into consideration the selected genres, prefrences and liked and disliked books. Selected genres: {', '.join(selected_genres)}; Selected preferences: {', '.join(selected_preferences)}. Conversation history: {chat_history}"},
+                {"role": "user", "content": f"{user_input}"},
+            ]
+        )
 
-    for item in output['choices']:
-        chatgpt_output = item['message']['content']
+        for item in output['choices']:
+            chatgpt_output = item['message']['content']
 
-    return chatgpt_output
+        return chatgpt_output
 
+    except RateLimitError as rate_limit_error:
+        raise rate_limit_error
+
+@app.errorhandler(openai.error.RateLimitError)
+def handle_rate_limit_error(rate_limit_error):
+    return render_template('error.html', error_message=str(rate_limit_error)), 500
+    
 
 @app.route('/')
 def home():
