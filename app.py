@@ -7,20 +7,24 @@ from flask_sqlalchemy import SQLAlchemy
 import secrets
 from openai.error import RateLimitError
 
+
 load_dotenv()
 openai.api_key = os.environ.get("API_KEY")
 
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)  
+
+# Use a constant secret key
+app.secret_key = os.environ.get('SECRET_KEY', default='a-hard-to-guess-string')
+
 print(f'Secret key: {app.secret_key}')
+
 app.config["SESSION_TYPE"] = "filesystem"
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 db = SQLAlchemy(app)
-
 
 class Reaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
